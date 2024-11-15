@@ -1,0 +1,19 @@
+Para apache airflow:
+#https://medium.com/@Shamimw/steps-to-install-apache-airflow-using-docker-compose-9d663ea2e740
+
+sudo curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.10.0/docker-compose.yaml'
+ 
+sudo mkdir -p ./dags ./logs ./plugins
+ 
+sudo echo -e "AIRFLOW_UID=50000" > .env
+sudo docker-compose up airflow-init
+
+sudo docker-compose -f docker-compose.yaml up -d
+
+ http://<IP>:8080 
+
+ airflow
+ airflow
+
+sudo ufw allow 8080
+
