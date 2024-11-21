@@ -3,3 +3,8 @@ https://archive.ics.uci.edu/dataset/45/heart+disease
 
 
 303 filas, 14 columnas
+No precisamos hacer cambios de tipos de datos de columnas
+No tenemos valores na
+Tenemos filas duplicadas (indices 163 y 164)
+-- Podriamos cambiar los valores de columnas a int32 en caso de corresponder, solo para eficiencia de memoria
+
