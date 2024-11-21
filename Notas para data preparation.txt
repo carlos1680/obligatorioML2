@@ -1,0 +1,5 @@
+https://rpubs.com/praneetha/predicting_diagnosis_of_a_heart_disease-phase1
+https://archive.ics.uci.edu/dataset/45/heart+disease
+
+
+303 filas, 14 columnas
