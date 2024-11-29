@@ -1,0 +1,110 @@
+* age : Edad del paciente
+* sex : Sexo del paciente
+	* Valor 0: Femenino
+	* Valor 1: Masculino
+* cp : Tipo de dolor en el pecho
+    *  Valor 1: Angina tipica
+	*  Valor 2: Angina atipica
+	*  Valor 3: Dolor no anginal
+	*  Value 0: Asintomatico
+* trtbps : Presion arterial en reposo (in mm Hg)
+* chol : Colesterol(colestoral) en mg/dl obtenido a través del sensor de IMC
+* fbs : (Azucar en la sangre en ayunas > 120 mg/dl) (1 = verdadero; 0 = falso)
+* restecg : Resultados electrocardiograficos en reposo.
+	* Valor 0: Normal
+	* Valor 1: Teniendo anomalía de la onda ST-T (inversiones de la onda T y/o elevación o depresión del ST > 0,05 mV)
+	* Valor 2: Mostrando hipertrofia ventricular izquierda probable o definitiva según los criterios Valorthalach de Estes: frecuencia cardíaca máxima valor alcanzado
+* thalachh : Frecuencia cardíaca máxima alcanzada
+* exng: Angina inducida por el ejercicio (1 = si; 0 = no)
+* oldpeak: Pico anterior
+* slp: Pendiente (Medida del cambio en el segmento ST en relación con el aumento de la frecuencia cardíaca durante el ejercicio)
+* caa: Número de vasos importantes (Aorta,vena pulmonar, vena cava, tronco pulmonar)
+* thall: El estado del corazón obtenido de la prueba de talio 
+	1: Normal,
+	2: Defecto fijo
+	3: Defecto reversible
+	0: No detectado
+* target : 
+	* 0= Menos posibilidades de sufrir un ataque cardíaco
+	* 1= Mayores posibilidades de sufrir u**n ataque cardíaco
+	
+	df_heart.columns = ['edad', 'sexo','tipo_dolor','presion_arterial_reposo','colesterol','azucar_en_sangre','res_electrocardiograficos','frec_cardiaca_max',
+	'angina_ind_ejercicio','pico_anterior','pend_frec_ejercicio','num_vasos','estado_corazon','propenso']
+	
+	
+	
+	
+	from sklearn.tree import DecisionTreeClassifier
+	
+	feature_cols = ['Temperatura_num','Humedad_num','Ventoso_num','Pronostico_num']
+X = df[feature_cols] # Variables de entrada
+y = df['Entrenar_num'] # Variable objetivo
+clf = DecisionTreeClassifier()
+clf = clf.fit(X,y)
+y_pred = clf.predict(X)
+y_pred
+
+df['Entrenar_prediccion'] = y_pred
+df
+#from sklearn.metrics import plot_confusion_matrix
+#import matplotlib.pyplot as plt
+#disp = plot_confusion_matrix(clf, X, y,display_labels=['No', 'Sí'],cmap=plt.cm.Blues)
+#disp.ax_.set_title('Matriz de Confusión')
+#print()
+#print(disp.confusion_matrix)
+
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from mlxtend.plotting import plot_confusion_matrix
+import matplotlib.pyplot as plt
+
+print('Matriz de confusion')
+cml = confusion_matrix(y,y_pred)
+plot_confusion_matrix(conf_mat=cml,show_absolute = True, show_normed = True, colorbar = True)
+plt.show()
+
+#from sklearn.metrics import plot_confusion_matrix
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+
+
+
+cm = confusion_matrix(y, y_pred)
+cmd = ConfusionMatrixDisplay(cm, display_labels=['No','Si'])
+cmd.plot()
+
+
+import numpy as np
+
+desconocido = np.array([2,1,1,0])
+desconocido = desconocido.reshape(1, -1)
+
+y_pred_desconocido = clf.predict(desconocido)
+y_pred_desconocido
+
+
+from sklearn import tree
+tree.plot_tree(clf,feature_names = feature_cols,class_names = ['0','1'], fontsize = 6)
+
+
+
+clases
+2 - DecisionTreeClassifier
+3 - gridcv
+5 - LogisticRegression
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://www.datacamp.com/tutorial/decision-tree-classification-python?utm_source=google&utm_medium=paid_search&utm_campaignid=21057859163&utm_adgroupid=157296744657&utm_device=c&utm_keyword=&utm_matchtype=&utm_network=g&utm_adpostion=&utm_creative=720328348506&utm_targetid=aud-1832882613722:dsa-2218886984100&utm_loc_interest_ms=&utm_loc_physical_ms=9069680&utm_content=&utm_campaign=230119_1-sea~dsa~tofu_2-b2c_3-es-lang-en_4-prc_5-na_6-na_7-le_8-pdsh-go_9-nb-e_10-na_11-na-bfcm24&gad_source=1&gclid=CjwKCAiA6aW6BhBqEiwA6KzDczzyOMJj4w5UthpJAIYogI1ndcyDYM_qkDsg8TmyQAvHWBnVOYUa7hoC3DcQAvD_BwE
